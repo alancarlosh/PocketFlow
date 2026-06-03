@@ -1,46 +1,84 @@
 # PocketFlow CRM
 
-PocketFlow CRM es un proyecto iOS en SwiftUI para practicar como desarrollador Jr. La app combina finanzas personales con una mini integracion estilo Salesforce: registrar ingresos/gastos, relacionarlos con clientes y preparar datos para sincronizacion.
+PocketFlow CRM is an iOS application built with SwiftUI that combines personal finance tracking with a lightweight CRM workflow. The project is designed around a practical business scenario: a freelancer, consultant, sales advisor, or independent professional needs to record income and expenses, associate them with clients, and prepare selected financial activity for synchronization with Salesforce.
 
-## Stack inicial
+## Project Overview
 
-- SwiftUI para la interfaz.
-- Swift 6.
-- MVVM como arquitectura base.
-- Servicios in-memory para aprender antes de conectar persistencia y red.
-- Tests unitarios con XCTest.
+The current version provides the foundation for a finance-focused CRM app. It includes a SwiftUI dashboard, transaction models, client relationships, financial summary calculations, and a mock Salesforce synchronization service. The architecture is intentionally simple and modular, making it easy to review, extend, and test.
 
-## Como abrirlo
+## Core Features
 
-1. Abre `PocketFlow.xcodeproj` en Xcode.
-2. Selecciona el scheme `PocketFlow`.
-3. Ejecuta en un simulador iOS.
+- Financial dashboard with income, expense, and balance summary.
+- Transaction list with expense/income classification.
+- Client association for CRM-style financial tracking.
+- Sync status per transaction.
+- Mock Salesforce sync service to model future API integration.
+- Unit tests for financial calculations and sync behavior.
 
-## Objetivo del MVP
+## Tech Stack
 
-- Ver balance total.
-- Listar transacciones.
-- Registrar ingresos y gastos.
-- Relacionar transacciones con clientes.
-- Simular una sincronizacion con Salesforce.
+- Swift 6
+- SwiftUI
+- MVVM
+- Combine / ObservableObject
+- XCTest
+- Xcode project structure
 
-## Roadmap de aprendizaje
+## Architecture
 
-1. Fundamentos Swift: structs, enums, protocolos, optionals y colecciones.
-2. SwiftUI: vistas, estado, listas, formularios y navegacion.
-3. MVVM: separar UI, estado y reglas de negocio.
-4. Persistencia: migrar de datos mock a SwiftData o Core Data.
-5. Networking: crear un cliente HTTP para Salesforce.
-6. OAuth: entender login seguro antes de tocar datos reales.
-7. Testing: cubrir calculos, view models y servicios.
+The project follows a lightweight MVVM structure:
 
-## Idea de Salesforce
+- `Models`: Domain entities such as `Transaction`, `Client`, and sync-related enums.
+- `Views`: SwiftUI screens and reusable UI components.
+- `ViewModels`: UI state, user actions, and coordination between views and services.
+- `Services`: Business logic and external integration boundaries.
+- `Tests`: Unit tests for core behavior.
 
-Para aprender sin credenciales reales, el proyecto empieza con `SalesforceSyncServiceMock`. Despues se puede reemplazar por un servicio real que use:
+This separation keeps the UI independent from business logic and prepares the project for future persistence, networking, and authentication layers.
 
-- OAuth 2.0.
-- REST API de Salesforce.
-- Objetos como `Account`, `Contact` y un objeto custom para gastos.
+## Salesforce Integration Approach
 
-Nunca guardes tokens reales en el repo.
+The app currently uses `SalesforceSyncServiceMock` to simulate synchronization without requiring real Salesforce credentials. This keeps the project safe to run and review while preserving a clear integration boundary.
+
+A production-ready Salesforce implementation would include:
+
+- OAuth 2.0 authentication.
+- Secure token storage in Keychain.
+- REST API communication with Salesforce.
+- Mapping local clients to Salesforce `Account` or `Contact` records.
+- Mapping financial records to a Salesforce custom object.
+- Error handling, retry policies, and offline sync state.
+
+## Current Status
+
+This repository contains the initial iOS scaffold and MVP foundation. The app builds successfully for iOS Simulator, and the test target compiles with the current project configuration.
+
+## Quality Practices
+
+- Modular project structure.
+- Protocol-based service abstraction for Salesforce sync.
+- Unit tests for core financial summary logic.
+- Mock service implementation for deterministic testing.
+- No real credentials or tokens stored in the repository.
+
+## Getting Started
+
+1. Clone the repository.
+2. Open `PocketFlow.xcodeproj` in Xcode.
+3. Select the `PocketFlow` scheme.
+4. Run the app on an iOS Simulator.
+
+## Roadmap
+
+- Add transaction creation and editing forms.
+- Add client detail screens and client-level financial summaries.
+- Introduce SwiftData or Core Data for local persistence.
+- Add filtering by date, category, client, and sync status.
+- Implement a real Salesforce API client.
+- Add OAuth login flow and secure token handling.
+- Expand unit and UI test coverage.
+
+## Purpose
+
+PocketFlow CRM was created as a portfolio project to demonstrate iOS development fundamentals, SwiftUI UI composition, MVVM architecture, business-domain modeling, testable service boundaries, and preparation for third-party CRM integration.
 
