@@ -22,9 +22,9 @@ struct TransactionRow: View {
             VStack(alignment: .trailing, spacing: 4) {
                 Text(transaction.amount.currencyText)
                     .font(.subheadline.weight(.semibold))
-                Text(transaction.syncStatus.rawValue)
+                Label(transaction.syncStatus.rawValue, systemImage: transaction.syncStatus.iconName)
                     .font(.caption2)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(transaction.syncStatus.tint)
             }
         }
         .padding(.vertical, 4)
@@ -36,6 +36,30 @@ struct TransactionRow: View {
         }
 
         return transaction.category.rawValue
+    }
+}
+
+private extension SyncStatus {
+    var iconName: String {
+        switch self {
+        case .pending:
+            "clock"
+        case .synced:
+            "checkmark.circle.fill"
+        case .failed:
+            "exclamationmark.triangle.fill"
+        }
+    }
+
+    var tint: Color {
+        switch self {
+        case .pending:
+            .orange
+        case .synced:
+            .green
+        case .failed:
+            .red
+        }
     }
 }
 

@@ -4,8 +4,7 @@ import SwiftUI
 struct PocketFlowApp: App {
     var body: some Scene {
         WindowGroup {
-            DashboardView(viewModel: DashboardViewModel.preview)
+            AppRootView(viewModel: .live)
         }
     }
 }
-

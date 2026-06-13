@@ -1,6 +1,6 @@
 import Foundation
 
-struct FinanceSummary: Sendable {
+struct FinanceSummary: Equatable, Sendable {
     let income: Decimal
     let expenses: Decimal
 

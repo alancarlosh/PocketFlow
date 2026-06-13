@@ -2,8 +2,8 @@ import Foundation
 
 enum SampleData {
     static let clients = [
-        Client(name: "Laura Gomez", company: "Northwind Studio", salesforceAccountId: "001-DEMO-001"),
-        Client(name: "Marco Ruiz", company: "BlueTrail Consulting")
+        Client(name: "Laura Gomez", company: "Northwind Studio", status: .active, salesforceAccountId: "001-DEMO-001"),
+        Client(name: "Marco Ruiz", company: "BlueTrail Consulting", status: .prospect)
     ]
 
     static let transactions = [
@@ -33,4 +33,3 @@ enum SampleData {
         )
     ]
 }
-

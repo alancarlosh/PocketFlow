@@ -1,6 +1,6 @@
 import Foundation
 
-struct Transaction: Identifiable, Hashable, Sendable {
+struct Transaction: Codable, Identifiable, Hashable, Sendable {
     let id: UUID
     var title: String
     var amount: Decimal
@@ -31,12 +31,12 @@ struct Transaction: Identifiable, Hashable, Sendable {
     }
 }
 
-enum TransactionKind: String, CaseIterable, Sendable {
+enum TransactionKind: String, CaseIterable, Codable, Sendable {
     case income = "Ingreso"
     case expense = "Gasto"
 }
 
-enum TransactionCategory: String, CaseIterable, Sendable {
+enum TransactionCategory: String, CaseIterable, Codable, Sendable {
     case sales = "Ventas"
     case food = "Comida"
     case transport = "Transporte"
@@ -45,7 +45,7 @@ enum TransactionCategory: String, CaseIterable, Sendable {
     case other = "Otro"
 }
 
-enum SyncStatus: String, Sendable {
+enum SyncStatus: String, Codable, Sendable {
     case pending = "Pendiente"
     case synced = "Sincronizado"
     case failed = "Error"
